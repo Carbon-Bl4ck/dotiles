@@ -1,0 +1,4 @@
+
+IFS= read -r -p "How can I help?: " input
+
+~/tuxi/tuxi -r "$input" | say 

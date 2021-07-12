@@ -1,0 +1,64 @@
+# swap window
+
+shift + alt - x : yabai -m window --swap recent
+shift + alt - h : yabai -m window --swap west
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north 
+shift + alt - l : yabai -m window --swap east
+
+# focus window
+
+alt - x : yabai -m window --focus recent
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north 
+alt - l : yabai -m window --focus east
+
+alt - r : yabai -m space --rotate 90
+
+# focus monitor
+
+ctrl + alt - z : yabai -m display --focus prev
+
+ctrl + alt - c : yabai -m display --focus next
+
+alt - 2 : yabai -m display --focus 1
+
+alt - 1 : yabai -m display --focus 2
+
+# move window
+shift + cmd - h : yabai -m window --warp west
+shift + cmd - j : yabai -m window --warp south
+shift + cmd - k : yabai -m window --warp north
+shift + cmd - l : yabai -m window --warp east
+
+# mirror tree y-axis
+alt - y : yabai -m space --mirror y-axis
+
+# decrease gap in focused space
+shift + alt - g : yabai -m space --gap rel:-10
+
+alt - n : yabai -m space --create && \
+		  index="$(yabai -m query --displays --display | jq '.spaces[-1]')" &&\
+		  yabai -m space --focus "${index}"
+
+
+alt - q : yabai -m space --destroy
+
+# send window to a space
+shift + alt - 1 : yabai -m window --space 1
+shift + alt - 2 : yabai -m window --space 2
+shift + alt - 3 : yabai -m window --space 3
+
+# toggle window native fullscreen
+shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# float / unfloat window and center on screen
+alt - t : yabai -m window --toggle float;\
+          yabai -m window --grid 4:4:1:1:2:2
+
+cmd - return : osascript /Users/cianomahony/Library/Scripts/new-iterm-window.scpt
+
+ctrl - t : iTerm2 -e /Users/cianomahony/shellscripts/freebee.sh
+
+alt - c : bash /Users/cianomahony/shellscripts/pbspells

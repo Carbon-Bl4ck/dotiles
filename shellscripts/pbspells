@@ -1,0 +1,47 @@
+#!/bin/sh
+
+menu(){
+	printf "1. [DOI] Invenio Citation: Generate citation\n"
+	printf "2. [URL] Lumbos dl: Download file in ~/dl\n"
+	printf "3. [URL] Liberum Scientiam: Bypass article paywall\n"
+	printf "4. [URL/DOI] Scientia potentia est: Download PDF with Sci-hub\n"
+	printf "5. [URL] Liberum perficiendi: Watch video"
+}
+
+spell_failed(){
+	terminal-notifier -message 'Failed to cast spell' -sound 'defautl'
+}
+
+choice=$(menu | choose -b ff79c6 | cut -d. -f1)
+pbtext=$(pbpaste)
+
+case $choice in
+	1)
+		~/shellscripts/getbib $pbtext >> ~/Latex/references.bib &&
+			terminal-notifier -message 'Adding citation' -sound 'default' ||
+				spell_failed
+		break
+		;;
+	2)
+		wget -P ~/dl $pbtext &&
+			terminal-notifier -message 'Downloading File' -sound 'default' ||
+				spell_failed
+		break
+		;;
+	3)
+		~/shellscripts/libre.sh $pbtext &&
+			terminal-notifier -message 'Opening article' -sound 'default' ||
+				spell_failed
+		break
+		;;
+	4)
+		~/shellscripts/sci-hub.sh $pbtext &&
+			terminal-notifier -message 'Preparing download' -sound 'default' ||
+				spell_failed
+		break
+		;;
+	5)	mpv $pbtext ||
+		       	spell_failed
+		break
+		;;	
+esac

@@ -1,0 +1,21 @@
+killall limelight &>/dev/null
+limelight &>/dev/null &
+
+yabai -m config layout bsp
+
+#global settings
+yabai -m config window_opacity		on
+yabai -m config active_window_opacity	1.0
+yabai -m config normal_window_opacity	0.90
+
+#general space settings
+yabai -m config top_padding		24
+yabai -m config bottom_padding		16
+yabai -m config left_padding 		16
+yabai -m config right_padding		16
+yabai -m config window_gap		16
+
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Tor Browser$" manage=off
+#yabai -m rule --add title="alacritty" manage=off sticky=on layer=above
+#yabai -m rule --add app="^Alacritty$" manage=off
